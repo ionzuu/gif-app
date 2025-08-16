@@ -3,7 +3,7 @@ import type { FC } from "react"
 interface Props{
   searches: string[];
 
-  onLabelClicked?: (term:string)=> void;
+  onLabelClicked: (term:string)=> void;
 }
 
 export const PreviousSearches: FC <Props> = ({searches = [], onLabelClicked}) => {
