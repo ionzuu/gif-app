@@ -13,8 +13,15 @@ export const GifsApp = () => {
     console.log(term)
   }
 
-  const handleSearch = (query: string) => {
-    console.log({query})
+  const handleSearch = (query: string = '') => {
+    query = query.trim().toLowerCase();
+    console.log('New Query:', query)
+
+    if(query.length === 0) return
+
+    if(previousTerms.includes(query)) return
+
+    setPreviousTerms([query, ...previousTerms].splice(0,7))
   }
 
   return (
@@ -31,7 +38,7 @@ export const GifsApp = () => {
       />
 
     {/* Previous Searches */}
-    <PreviousSearches searches={['Goku', 'Dragon', 'Wagon']} onLabelClicked={(term:string) => handleTermClicked(term)} />
+    <PreviousSearches searches={previousTerms} onLabelClicked={(term:string) => handleTermClicked(term)} />
 
     {/* Gifs */}
     <GifList Gifs={mockGifs} />
